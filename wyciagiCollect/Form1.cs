@@ -51,18 +51,23 @@ namespace wyciagiCollect
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Data wpłaty";
+                sheet.Range[newRange].Text = "Lp";
                 newRange = "B" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Nr ew.";
+                sheet.Range[newRange].Text = "Data wpłaty";
                 newRange = "C" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Wpłacający";
+                sheet.Range[newRange].Text = "Nr ew.";
                 newRange = "D" + currentRowNumber.ToString();
+                sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
+                sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
+                sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
+                sheet.Range[newRange].Text = "Wpłacający";
+                newRange = "E" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
@@ -73,6 +78,14 @@ namespace wyciagiCollect
                 
                     currentRowNumber = i+3;
                     newRange = "A" + currentRowNumber.ToString();
+                    sheet.Range[newRange].ColumnWidth = 4;
+                    sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
+                    sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
+                    sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
+                    sheet.Range[newRange].Style.Font.Size = 10;
+                    sheet.Range[newRange].Text = (currentRowNumber-3).ToString()+"."; //Lp
+
+                    newRange = "B" + currentRowNumber.ToString();
                     sheet.Range[newRange].ColumnWidth = 10;
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
@@ -80,7 +93,7 @@ namespace wyciagiCollect
                     sheet.Range[newRange].Style.Font.Size = 10;
                     sheet.Range[newRange].Text = dateToDateWithLine(allFileLines[i].Split(',')[5]); //data wpłaty
                     
-                    newRange = "B" + currentRowNumber.ToString();
+                    newRange = "C" + currentRowNumber.ToString();
                     sheet.Range[newRange].ColumnWidth = 10;
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
@@ -88,8 +101,8 @@ namespace wyciagiCollect
                     sheet.Range[newRange].Style.Font.Size = 16;
                     sheet.Range[newRange].Value = allFileLines[i].Split(',')[12].Substring(15, 11); //numer ewidencyjny (końcówka NRB)
 
-                    newRange = "C" + currentRowNumber.ToString();
-                    sheet.Range[newRange].ColumnWidth = 50;
+                    newRange = "D" + currentRowNumber.ToString();
+                    sheet.Range[newRange].ColumnWidth = 45;
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                     sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Left;
@@ -97,7 +110,7 @@ namespace wyciagiCollect
                     sheet.Range[newRange].Style.Font.Size = 10;
                     sheet.Range[newRange].Value = allFileLines[i].Split(',')[6]; //wpłacający
 
-                    newRange = "D" + currentRowNumber.ToString();
+                    newRange = "E" + currentRowNumber.ToString();
                     sheet.Range[newRange].ColumnWidth = 13;
                     sheet.Range[newRange].Style.NumberFormat = "0.00";
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
@@ -107,13 +120,13 @@ namespace wyciagiCollect
                     sheet.Range[newRange].Value = allFileLines[i].Split(',')[3].Replace('.', ','); //kwota wpłaty
                 }
                 currentRowNumber++;
-                newRange = "C" + currentRowNumber.ToString();
+                newRange = "D" + currentRowNumber.ToString();
                 sheet.Range[newRange].Text = "Łączna kwota wpłat w pliku:";
                 sheet.Range[newRange].Style.Font.Size = 16;
                 sheet.Range[newRange].Style.Font.Color = System.Drawing.Color.Red;
-                newRange = "D" + currentRowNumber.ToString();
+                newRange = "E" + currentRowNumber.ToString();
                 sheet.Range[newRange].Style.NumberFormat = "0.00";
-                sheet.Range[newRange].Formula= "=SUM(D4:D"+ (currentRowNumber-1).ToString()+")";
+                sheet.Range[newRange].Formula= "=SUM(E4:E"+ (currentRowNumber-1).ToString()+")";
                 sheet.Range[newRange].Style.Font.Size = 16;
                 sheet.Range[newRange].Style.Font.Color = System.Drawing.Color.Red;
                 
