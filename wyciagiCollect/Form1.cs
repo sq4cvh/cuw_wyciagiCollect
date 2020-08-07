@@ -43,7 +43,7 @@ namespace wyciagiCollect
                 
                 sheet.Name = "Wyciąg bankowy " + dateToDateWithLine(firstLine.Split(',')[3]);
                 //Writes hello world to A1
-                sheet.Range["A1"].Text = "Plik z Banku: " + Path.GetFileName(fileName);
+                sheet.Range["A1"].Text = "Plik z Banku: " + Path.GetFileName(fileName)+" data księgowania: "+ dateToDateWithLine(firstLine.Split(',')[3]);
                 sheet.DefaultRowHeight = 20;
                 string newRange = "A2";
                 int currentRowNumber = 3;
@@ -52,21 +52,26 @@ namespace wyciagiCollect
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
                 sheet.Range[newRange].Text = "Lp";
+                //newRange = "B" + currentRowNumber.ToString();
+                //sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
+                //sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
+                //sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
+                //sheet.Range[newRange].Text = "Data księgowania";
                 newRange = "B" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Data wpłaty";
+                sheet.Range[newRange].Text = "Nr collect.";
                 newRange = "C" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Nr ew.";
+                sheet.Range[newRange].Text = "Wpłacający";
                 newRange = "D" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                 sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                sheet.Range[newRange].Text = "Wpłacający";
+                sheet.Range[newRange].Text = "Tytuł wpłaty";
                 newRange = "E" + currentRowNumber.ToString();
                 sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                 sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
@@ -82,18 +87,18 @@ namespace wyciagiCollect
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                     sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                    sheet.Range[newRange].Style.Font.Size = 10;
+                    sheet.Range[newRange].Style.Font.Size = 8;
                     sheet.Range[newRange].Text = (currentRowNumber-3).ToString()+"."; //Lp
 
-                    newRange = "B" + currentRowNumber.ToString();
-                    sheet.Range[newRange].ColumnWidth = 10;
-                    sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
-                    sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
-                    sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
-                    sheet.Range[newRange].Style.Font.Size = 10;
-                    sheet.Range[newRange].Text = dateToDateWithLine(allFileLines[i].Split(',')[5]); //data wpłaty
+                    //newRange = "B" + currentRowNumber.ToString();
+                    //sheet.Range[newRange].ColumnWidth = 10;
+                    //sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
+                    //sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
+                    //sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Center;
+                    //sheet.Range[newRange].Style.Font.Size = 10;
+                    //sheet.Range[newRange].Text = dateToDateWithLine(allFileLines[i].Split(',')[5]); //data wpłaty
                     
-                    newRange = "C" + currentRowNumber.ToString();
+                    newRange = "B" + currentRowNumber.ToString();
                     sheet.Range[newRange].ColumnWidth = 10;
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
@@ -101,17 +106,26 @@ namespace wyciagiCollect
                     sheet.Range[newRange].Style.Font.Size = 16;
                     sheet.Range[newRange].Value = allFileLines[i].Split(',')[12].Substring(15, 11); //numer ewidencyjny (końcówka NRB)
 
-                    newRange = "D" + currentRowNumber.ToString();
-                    sheet.Range[newRange].ColumnWidth = 45;
+                    newRange = "C" + currentRowNumber.ToString();
+                    sheet.Range[newRange].ColumnWidth = 20;
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
                     sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Left;
                     sheet.Range[newRange].Style.WrapText = true;
-                    sheet.Range[newRange].Style.Font.Size = 10;
+                    sheet.Range[newRange].Style.Font.Size = 8;
                     sheet.Range[newRange].Value = allFileLines[i].Split(',')[6]; //wpłacający
 
+                    newRange = "D" + currentRowNumber.ToString();
+                    sheet.Range[newRange].ColumnWidth = 40;
+                    sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
+                    sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
+                    sheet.Range[newRange].HorizontalAlignment = HorizontalAlignType.Left;
+                    sheet.Range[newRange].Style.WrapText = true;
+                    sheet.Range[newRange].Style.Font.Size = 8;
+                    sheet.Range[newRange].Value = allFileLines[i].Split(',')[14]+ allFileLines[i].Split(',')[15]+ allFileLines[i].Split(',')[16]+ allFileLines[i].Split(',')[17]; //tytuł wpłaty
+
                     newRange = "E" + currentRowNumber.ToString();
-                    sheet.Range[newRange].ColumnWidth = 13;
+                    sheet.Range[newRange].ColumnWidth = 10;
                     sheet.Range[newRange].Style.NumberFormat = "0.00";
                     sheet.Range[newRange].BorderAround(LineStyleType.Thin, ExcelColors.Black);
                     sheet.Range[newRange].VerticalAlignment = VerticalAlignType.Center;
@@ -130,7 +144,7 @@ namespace wyciagiCollect
                 sheet.Range[newRange].Style.Font.Size = 16;
                 sheet.Range[newRange].Style.Font.Color = System.Drawing.Color.Red;
                 
-                string fileNameToSave = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Bank_Pliki\" + DateTime.Now.ToString("yyyy-MM-dd_HH.mm") + ".xlsx";
+                string fileNameToSave = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Bank_Pliki\wyciag_Collect_z_dnia_" + dateToDateWithLine(firstLine.Split(',')[3]) + ".xlsx";
                 workbook.Worksheets[1].Remove();
                 workbook.Worksheets[1].Remove();
                 workbook.SaveToFile(fileNameToSave,ExcelVersion.Version2013);

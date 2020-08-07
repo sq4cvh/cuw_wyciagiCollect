@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Wyci¹gi Collect"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "Centrum Us³ug Wspólnych w Suwa³kach"
 #define MyAppURL "http://cuw.bip.suwalki.eu"
 #define MyAppExeName "wyciagiCollect.exe"
