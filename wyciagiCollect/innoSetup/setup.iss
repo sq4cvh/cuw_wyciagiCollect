@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Wyci¹gi Collect"
-#define MyAppVersion "1.0.1"
+#define MyAppVersion "1.0.2"
 #define MyAppPublisher "Centrum Us³ug Wspólnych w Suwa³kach"
 #define MyAppURL "http://cuw.bip.suwalki.eu"
 #define MyAppExeName "wyciagiCollect.exe"
@@ -25,7 +25,8 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=D:\vs2019_projekty\CUW\cuw_wyciagiCollect\wyciagiCollect\innoSetup
 OutputBaseFilename=wyciagiSetup
-SetupIconFile=D:\vs2019_projekty\CUW\cuw_wyciagiCollect\wyciagiCollect\4213403-bill-check-ecommerce-invoice-payment-receipt-shopping_115368.ico
+SetupIconFile=D:\vs2019_projekty\CUW\cuw_wyciagiCollect\wyciagiCollect\app.ico
+UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
